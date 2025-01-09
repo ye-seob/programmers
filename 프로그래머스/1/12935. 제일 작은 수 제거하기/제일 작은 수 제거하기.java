@@ -5,11 +5,7 @@ import java.util.Arrays;
 
 class Solution {
     public int[] solution(int[] arr) {
-        int[] answer = new int[arr.length-1];
-        
         if(arr.length == 1) {
-            answer[0] = -1;
-            
              return new int[]{ -1 };
         }
         
@@ -18,6 +14,9 @@ class Solution {
         for(int num : arr){
             if (min > num) min = num;
         }
+        
+        
+        int[] answer = new int[arr.length-1];
         
         int index = 0;
         for(int num : arr){
