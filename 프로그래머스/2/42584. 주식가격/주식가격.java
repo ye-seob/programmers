@@ -4,18 +4,20 @@ class Solution {
     public int[] solution(int[] prices) {
         int[] answer = new int[prices.length];
         Stack<Integer> stack = new Stack<>(); 
+        
+        stack.push(0);
 
-        for (int i = 0; i < prices.length; i++) {
+        for (int i = 1; i < prices.length; i++) {
             while (!stack.isEmpty() && prices[stack.peek()] > prices[i]) {
-                int idx = stack.pop(); // 이전 가격의 인덱스
-                answer[idx] = i - idx; // 유지된 시간 계산
+                int beforeIndex = stack.pop();
+                answer[beforeIndex] = i - beforeIndex; 
             }
-            stack.push(i); // 현재 인덱스를 스택에 저장
+            stack.push(i);
         }
 
         while (!stack.isEmpty()) {
-            int idx = stack.pop();
-            answer[idx] = prices.length - 1 - idx;
+            int remainIndex = stack.pop();
+            answer[remainIndex] = prices.length - 1 - remainIndex;
         }
 
         return answer;
